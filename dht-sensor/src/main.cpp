@@ -28,12 +28,10 @@ void setup() {
   sensor.addAutoEntry(temperature, getTemperature);
   sensor.addAutoEntry(humidity, getHumidity);
   Serial.println(F("Sensor has started"));
-  uint8_t addr = 0x60;
-  // Get address from PB3 to PB6
-  addr += (PIND >> 3) & 0b1111;
-  Serial.print(F("Address: 0x"));
-  Serial.println(addr);
-  sensor.begin(addr);
+  uint8_t address = readAddress();
+  Serial.print("-->\tSystem.Address\t0x");
+  Serial.println(address, HEX);
+  sensor.begin(address);
   dht.begin();
   StartSensor(sensor);
 }

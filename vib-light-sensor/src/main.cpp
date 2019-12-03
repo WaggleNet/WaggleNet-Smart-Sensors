@@ -17,13 +17,6 @@ void get_ambient_light() {
   ambient_light = analogRead(AMLIGHT);
 }
 
-uint8_t readAddress() {
-  DDRD &= 0b10000111; // Clear PD6-3 to read address
-  PORTD |= 0b01111000; // Set them to pullup
-  delay(10);
-  return ((PIND >> 3) & 0xf) + 0x20; // Take PD6-3 readouts
-}
-
 void setup() {
   pinMode(LED_INDICATOR, OUTPUT);
   digitalWrite(LED_INDICATOR, HIGH);
