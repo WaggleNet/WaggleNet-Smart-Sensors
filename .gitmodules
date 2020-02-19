@@ -1,3 +1,6 @@
 [submodule "protocol"]
 	path = protocol
 	url = https://github.com/WaggleNet/WaggleNet_PnP.git
+[submodule "weight-sensor/lib/HX711"]
+	path = weight-sensor/lib/HX711
+	url = https://github.com/bogde/HX711.git
