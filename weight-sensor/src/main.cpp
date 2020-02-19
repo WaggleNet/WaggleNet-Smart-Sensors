@@ -2,6 +2,7 @@
 #include <Wire.h>
 //#define UNO
 #include "pnpsensor.h"
+#include "HX711.h"
 
 #define SENSOR_TYPE 1002
 #define LED_INDICATOR 9
