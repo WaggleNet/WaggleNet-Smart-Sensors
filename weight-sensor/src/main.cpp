@@ -29,8 +29,8 @@ void setup() {
   Serial.begin(115200);
   Serial.println("-!>\tSTART\tSystem");
   sensor.type = SENSOR_TYPE;
-  sensor.addAutoEntry(ambient_light, get_ambient_light);
-  sensor.addEntry(hasVibration);
+  sensor.addAutoUintEntry(ambient_light, get_ambient_light);
+  sensor.addUintEntry(hasVibration);
   uint8_t address = readAddress();
   Serial.print("-->\tSystem.Address\t0x");
   Serial.println(address, HEX);
