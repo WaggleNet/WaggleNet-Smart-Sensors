@@ -36,5 +36,5 @@ void setup() {
 
 void loop() {
   sensor.update();
-  sensor.changed(1);
+  // sensor.changed(1);
 }
