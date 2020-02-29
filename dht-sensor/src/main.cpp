@@ -25,8 +25,8 @@ void setup() {
   Serial.begin(9600);
   Serial.println(F("Sensor is setting up"));
   sensor.type = 1001L;
-  sensor.addAutoEntry(temperature, getTemperature);
-  sensor.addAutoEntry(humidity, getHumidity);
+  sensor.addAutoFloatEntry(temperature, getTemperature);
+  sensor.addAutoFloatEntry(humidity, getHumidity);
   Serial.println(F("Sensor has started"));
   uint8_t address = readAddress();
   Serial.print("-->\tSystem.Address\t0x");
