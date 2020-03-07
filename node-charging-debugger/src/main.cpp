@@ -32,7 +32,9 @@ float computeVoltage(int pin){
 
 void updateSystemMonitor() {
   digitalWrite(LED_BLUE, HIGH);
+  delay(300);
   analogReference(INTERNAL);
+  Serial.println("Collecting");
   if (!(ADMUX >> REFS1)) {
       analogRead(A6);
       analogRead(A6);
@@ -55,6 +57,7 @@ void updateSystemMonitor() {
 void setup() {
   Serial.begin(9600);
   Serial.println("Sensor is setting up");
+  pinMode(LED_BLUE, OUTPUT);
 
   // Entries follow the node
   sensor.type = 0x1a;  // WaggleNode v1 Telemetry Format
@@ -67,6 +70,7 @@ void setup() {
   
   Serial.println("Sensor has started");
   sensor.begin(address);
+  systemStatsTimer.start();
   StartSensor(sensor);
 }
 
