@@ -15,30 +15,23 @@ HX711 scale;
 uint32_t weight;
 
 void get_weight_reading(){
-  //digitalWrite(LED_PIN, HIGH);
-  //Serial.println("starting");
-  weight = scale.read_average(uint8_t(100));
-  // Serial.println(weight);
-  // Serial.println("done");
-  //digitalWrite(LED_PIN, LOW);
-  //weight = 0;
+  Serial.println("starting");
+  //digitalWrite(LED_PIN, HIGH); //testing purposes: turns on led to show how long it takes to read
+  weight = scale.read_average(uint8_t(20));
+  weight = 0xffffffff - weight; //flip
+  weight = int((weight/5366.1)-5.9926); //convert to pounds, remove if you want raw value
+  //digitalWrite(LED_PIN, LOW); //testing purposes: turns of led when done reading
 }
 
-// uint32_t bla;
-// void get_blablabla(){
-//   bla = millis();
-// }
 
 void setup() {
   pinMode(LED_PIN, OUTPUT);
   digitalWrite(LED_PIN, HIGH);
   Serial.begin(115200);
   Serial.println("-!>\tSTART\tSystem");
-  scale.begin(HX711DATA, HX711CLK);
+  scale.begin(HX711DATA, HX711CLK, 64);
   sensor.type = SENSOR_TYPE;
   sensor.addAutoUintEntry(weight, get_weight_reading);
-  // sensor.addAutoUintEntry(bla, get_blablabla);
-  // sensor.addAutoUintEntry(weight, get_weight_reading);
   uint8_t address = readAddress();
   Serial.print("-->\tSystem.Address\t0x");
   Serial.println(address, HEX);
